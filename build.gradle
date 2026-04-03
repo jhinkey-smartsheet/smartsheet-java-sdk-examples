@@ -1,0 +1,31 @@
+plugins {
+    id 'application'
+}
+
+group = 'com.example.smartsheet'
+version = '0.1.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.smartsheet:smartsheet-sdk-java:3.10.1'
+
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+application {
+    mainClass = 'com.example.smartsheet.GetWorkspaceChildren'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
