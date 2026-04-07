@@ -30,8 +30,6 @@ All modules take `workspaceId` as a required positional argument.
 
 - `gradle run --args="$env:WORKSPACE_ID" -PmainClass=com.example.smartsheet.LegacyGetWorkspaceChildren`
 
-- `gradle run --args="$env:WORKSPACE_ID" -PmainClass=com.example.smartsheet.LegacyCollectAllWorkspaceSheetIds`
-
 - `gradle run --args="$env:WORKSPACE_ID" -PmainClass=com.example.smartsheet.LegacyGetWorkspaceHierarchy`
 
 ## Notes
