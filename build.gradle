@@ -17,6 +17,7 @@ repositories {
 
 dependencies {
     implementation 'com.smartsheet:smartsheet-sdk-java:3.10.1'
+    runtimeOnly 'org.slf4j:slf4j-simple:1.7.36'
 
     testImplementation platform('org.junit:junit-bom:5.10.2')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -28,4 +29,11 @@ application {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.register('runListWorkspaces', JavaExec) {
+    group = 'application'
+    description = 'Run the ListWorkspaces example.'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.smartsheet.ListWorkspaces'
 }
