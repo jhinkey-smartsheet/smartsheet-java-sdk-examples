@@ -21,6 +21,14 @@ public class GetWorkspaceChildren {
 
         Workspace workspaceMetadata = client.workspaceResources().getWorkspaceMetadata(workspaceId, null);
 
+        System.out.println("Workspace " +
+            "\nname: " + workspaceMetadata.getName() +
+            "\nid: " + workspaceMetadata.getId() +
+            "\naccess level: " + workspaceMetadata.getAccessLevel() +
+            "\npermalink: " + workspaceMetadata.getPermalink() +
+            "\ncreated at: " + workspaceMetadata.getCreatedAt() +
+            "\nmodified at: " + workspaceMetadata.getModifiedAt());
+
         List<Sheet> sheets = new ArrayList<>();
         List<Report> reports = new ArrayList<>();
         List<Sight> sights = new ArrayList<>();
