@@ -22,11 +22,11 @@ public class GetFolderChildren {
         Folder folderMetadata = client.folderResources().getFolderMetadata(folderId, null);
 
         System.out.println("Folder " +
-            "\nname: " + folderMetadata.getName() +
-            "\nid: " + folderMetadata.getId() +
-            "\npermalink: " + folderMetadata.getPermalink() +
-            "\ncreated at: " + folderMetadata.getCreatedAt() +
-            "\nmodified at: " + folderMetadata.getModifiedAt());
+            "\n  name: " + folderMetadata.getName() +
+            "\n  id: " + folderMetadata.getId() +
+            "\n  permalink: " + folderMetadata.getPermalink() +
+            "\n  created at: " + folderMetadata.getCreatedAt() +
+            "\n  modified at: " + folderMetadata.getModifiedAt());
 
         List<Sheet> sheets = new ArrayList<>();
         List<Report> reports = new ArrayList<>();
@@ -36,8 +36,10 @@ public class GetFolderChildren {
 
         String lastKey = null;
         do {
-            TokenPaginatedResult<Object> response = client.folderResources()
-                    .getFolderChildren(folderId, null, null, lastKey, null);
+            TokenPaginatedResult<Object> response = 
+                client.folderResources()
+                    .getFolderChildren(
+                        folderId, null, null, lastKey, null);
 
             for (Object child : response.getData()) {
                 if (child instanceof Folder folder) {
