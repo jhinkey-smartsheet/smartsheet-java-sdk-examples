@@ -17,20 +17,45 @@ Java development environment with Smartsheet SDK examples, modeled after the Pyt
 
 - `gradle build`
 
-## Run each module
+## Run examples
 
-All modules take `workspaceId` as a required positional argument.
+### How to use
 
-- `gradle run --args="1234567890"`
-  - Runs default main class (`GetWorkspaceChildren`)
+Every class uses `SMARTSHEET_API_TOKEN` from the environment.
+Set IDs as needed:
 
-- `gradle run --args="$env:WORKSPACE_ID" -PmainClass=com.example.smartsheet.CollectAllWorkspaceSheetIds`
+- PowerShell:
+  - `$env:WORKSPACE_ID = "<workspace-id>"`
+  - `$env:FOLDER_ID = "<folder-id>"`
+- Linux/macOS:
+  - `export WORKSPACE_ID="<workspace-id>"`
+  - `export FOLDER_ID="<folder-id>"`
 
-- `gradle run --args="$env:WORKSPACE_ID" -PmainClass=com.example.smartsheet.GetWorkspaceHierarchy`
+Run each class with dedicated Gradle tasks:
 
-- `gradle run --args="$env:WORKSPACE_ID" -PmainClass=com.example.smartsheet.LegacyGetWorkspaceChildren`
+- `GetWorkspaceChildren` (`workspaceId`): `./gradlew runGetWorkspaceChildren -PappArgs="$WORKSPACE_ID"`
+- `GetWorkspaceHierarchy` (`workspaceId`): `./gradlew runGetWorkspaceHierarchy -PappArgs="$WORKSPACE_ID"`
+- `LegacyGetWorkspaceChildren` (`workspaceId`): `./gradlew runLegacyGetWorkspaceChildren -PappArgs="$WORKSPACE_ID"`
+- `LegacyGetWorkspaceHierarchy` (`workspaceId`): `./gradlew runLegacyGetWorkspaceHierarchy -PappArgs="$WORKSPACE_ID"`
+- `GetFolderChildren` (`folderId`): `./gradlew runGetFolderChildren -PappArgs="$FOLDER_ID"`
+- `LegacyGetFolder` (`folderId`): `./gradlew runLegacyGetFolder -PappArgs="$FOLDER_ID"`
+- `LegacyListFolders` (`folderId`): `./gradlew runLegacyListFolders -PappArgs="$FOLDER_ID"`
+- `ListWorkspaces` (no args): `./gradlew runListWorkspaces`
 
-- `gradle run --args="$env:WORKSPACE_ID" -PmainClass=com.example.smartsheet.LegacyGetWorkspaceHierarchy`
+You can also run any class using the generic task:
+
+- `./gradlew runExample -PmainClass=com.example.smartsheet.GetFolderChildren -PappArgs="$FOLDER_ID"`
+- `./gradlew runExample -PmainClass=com.example.smartsheet.ListWorkspaces`
+
+PowerShell examples:
+
+- `.\gradlew.bat runGetWorkspaceChildren -PappArgs="$env:WORKSPACE_ID"`
+- `.\gradlew.bat runGetFolderChildren -PappArgs="$env:FOLDER_ID"`
+- `.\gradlew.bat runLegacyGetFolder -PappArgs="$env:FOLDER_ID"`
+- `.\gradlew.bat runLegacyListFolders -PappArgs="$env:FOLDER_ID"`
+- `.\gradlew.bat runListWorkspaces`
+- `.\gradlew.bat runExample -PmainClass=com.example.smartsheet.GetFolderChildren -PappArgs="$env:FOLDER_ID"`
+- `.\gradlew.bat runExample -PmainClass=com.example.smartsheet.ListWorkspaces`
 
 ## Notes
 

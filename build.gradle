@@ -31,9 +31,43 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-tasks.register('runListWorkspaces', JavaExec) {
+def exampleMainClasses = [
+        'com.example.smartsheet.GetWorkspaceChildren',
+        'com.example.smartsheet.GetWorkspaceHierarchy',
+        'com.example.smartsheet.GetFolderChildren',
+        'com.example.smartsheet.LegacyGetFolder',
+        'com.example.smartsheet.LegacyListFolders',
+        'com.example.smartsheet.ListWorkspaces',
+        'com.example.smartsheet.LegacyGetWorkspaceChildren',
+        'com.example.smartsheet.LegacyGetWorkspaceHierarchy'
+]
+
+tasks.register('runExample', JavaExec) {
     group = 'application'
-    description = 'Run the ListWorkspaces example.'
+    description = 'Run any example: -PmainClass=<fqcn> [-PappArgs="arg1 arg2"]'
     classpath = sourceSets.main.runtimeClasspath
-    mainClass = 'com.example.smartsheet.ListWorkspaces'
+
+    doFirst {
+        if (!project.hasProperty('mainClass') || !project.property('mainClass').toString().trim()) {
+            throw new GradleException("Missing -PmainClass. Example: gradlew runExample -PmainClass=com.example.smartsheet.ListWorkspaces")
+        }
+
+        mainClass = project.property('mainClass').toString().trim()
+        if (project.hasProperty('appArgs') && project.property('appArgs').toString().trim()) {
+            args project.property('appArgs').toString().trim().split(/\s+/)
+        }
+    }
+}
+
+exampleMainClasses.each { fqcn ->
+    def simpleName = fqcn.substring(fqcn.lastIndexOf('.') + 1)
+    tasks.register("run${simpleName}", JavaExec) {
+        group = 'application'
+        description = "Run ${simpleName}."
+        classpath = sourceSets.main.runtimeClasspath
+        mainClass = fqcn
+        if (project.hasProperty('appArgs') && project.property('appArgs').toString().trim()) {
+            args project.property('appArgs').toString().trim().split(/\s+/)
+        }
+    }
 }
