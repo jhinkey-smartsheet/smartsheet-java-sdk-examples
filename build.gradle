@@ -35,6 +35,9 @@ def exampleMainClasses = [
         'com.example.smartsheet.GetWorkspaceChildren',
         'com.example.smartsheet.GetWorkspaceHierarchy',
         'com.example.smartsheet.GetFolderChildren',
+        'com.example.smartsheet.GetAndDeleteShareSheet'
+        'com.example.smartsheet.ShareSheet',
+        'com.example.smartsheet.UpdateShareSheet',
         'com.example.smartsheet.LegacyGetFolder',
         'com.example.smartsheet.LegacyListFolders',
         'com.example.smartsheet.ListWorkspaces',
