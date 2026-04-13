@@ -18,7 +18,7 @@ public class ShareSheet {
 
         CreateShareRequest shareRequest = new
             CreateShareRequest.CreateShareRequestBuilder()
-                .setEmail("jim.hinkey@smartsheet.com")
+                .setEmail("jane.doe@smartsheet.com")
                 .setAccessLevel(AccessLevel.VIEWER)
                 .setMessage("What do you think of this sheet?")
                 .setSubject("Sheet for review")
