@@ -19,7 +19,8 @@ public class GetFolderChildren {
         Smartsheet client = createClientFromEnv();
 
         System.out.println("API type: " + client.folderResources().getClass().getName());
-        Folder folderMetadata = client.folderResources().getFolderMetadata(folderId, null);
+        Folder folderMetadata =
+            client.folderResources().getFolderMetadata(folderId, null);
 
         System.out.println("Folder " +
             "\n  name: " + folderMetadata.getName() +
